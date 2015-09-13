@@ -1,1 +1,2 @@
-$("#append").html("<%=j render @link %>");
+// $("#append").html("<%=j render @link %>");
+$('#append').html('<p class="short_url">Your Shortened Link: <%= link_to "http://localhost:3000/#{@link.short_url}", @link.short_url, target: "_blank" %></p>')

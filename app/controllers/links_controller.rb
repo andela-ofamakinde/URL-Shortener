@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  # before_action :set_link, only: [:show]
   respond_to :html, :js
   def index
    @links = Link.all
@@ -10,9 +11,7 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(link_params)
-    # require "pry-nav"; binding.pry
     if @link.save
-      @last_link = "#{root_url}" + Link.last.short_url 
         respond_to do |format|
         # format.html redirect_to root_path
         format.js 
@@ -23,7 +22,16 @@ class LinksController < ApplicationController
   end
 
   def show
-    @link = Link.all
+    if params[:short_url]
+      # require "pry-nav"; binding.pry
+      @link = Link.find_by(short_url: params[:short_url])
+      if redirect_to @link.long_url
+        @link.clicks += 1
+        @link.save
+      end
+    else
+      @link = Link.find(params[:id])
+    end
   end
 
   private
@@ -31,4 +39,9 @@ class LinksController < ApplicationController
   def link_params
     params.require(:link).permit(:long_url)
   end
+
+  def set_link
+    @link = Link.find_by(short_url: params[:short_url])
+  end
+
 end
