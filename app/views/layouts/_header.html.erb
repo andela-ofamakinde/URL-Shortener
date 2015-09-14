@@ -1,0 +1,7 @@
+<div class="container">
+  <% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <div><%= link_to "Log in", :class =>"in-line" %> | <%= link_to "Sign up", signup_path, :class =>"in-line" %> | <%= link_to "Home", root_path, :class =>"in-line" %></div>
+
+</div>

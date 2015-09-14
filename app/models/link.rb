@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
   validates :short_url, uniqueness: true
   validates :long_url, presence: true
   validates :clicks, presence: true
+  belongs_to :user
 
   def generate_short_url
     begin

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   root 'links#index'
   # get 'links/create'
   # get 'welcome/index'
   resources :links
-  get ':short_url' => 'links#show'
   resources :users
+  get 'signup' => 'users#new'
+  get ':short_url' => 'links#show'
 
    
   # The priority is based upon order of creation: first created -> highest priority.
