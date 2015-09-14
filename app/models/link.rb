@@ -11,7 +11,7 @@ class Link < ActiveRecord::Base
   end
 
   def display_short_url
-  self.short_url
+    ENV['BASE_URL'] + self.short_url
   end
 
 
