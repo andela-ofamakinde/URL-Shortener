@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   root 'links#index'
-
   # get 'links/create'
-
   # get 'welcome/index'
-
   resources :links
-   get ':short_url' => 'links#show'
+  get ':short_url' => 'links#show'
+  resources :users
 
    
   # The priority is based upon order of creation: first created -> highest priority.
