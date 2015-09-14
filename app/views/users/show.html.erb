@@ -5,8 +5,9 @@
   <ul>
     <% @user.links.each do |link|%>
     <li>Original link: <%= link.long_url %></li>
-    <li>Shortened link: <%= link.display_short_url %></li>
+    <li>Shortened link: <%= link_to link.display_short_url, link.display_short_url, target: "_blank" %></li>
     <li>Clicks: <%= link.clicks %></li>
+     <li><%= link_to 'Details', link_details_path(id: link.id) %></li>
     <%end%>
   </ul>
 </div>

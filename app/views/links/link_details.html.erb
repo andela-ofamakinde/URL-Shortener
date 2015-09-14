@@ -1,0 +1,7 @@
+<div class="container">
+<ul>
+<li>Original Link: <%= @link.long_url %></li>
+<li>Shortened Link: <%= link_to @link.display_short_url, @link.display_short_url, target: "_blank" %></li>
+<li>No of times visited: <%= @link.clicks %></li>
+</ul>
+</div>

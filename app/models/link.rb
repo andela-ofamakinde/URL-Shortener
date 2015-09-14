@@ -4,6 +4,7 @@ class Link < ActiveRecord::Base
   validates :long_url, presence: true
   validates :clicks, presence: true
   belongs_to :user
+  default_scope{ order("created_at desc")}
 
   def generate_short_url
     begin

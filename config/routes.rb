@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get 'link_details/:id' => 'links#link_details', as: :link_details
   get ':short_url' => 'links#show'
 
    

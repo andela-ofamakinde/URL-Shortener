@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   # before_action :set_link, only: [:show]
   respond_to :html, :js
   def index
-   @links = Link.all
+   @links = Link.all.order(created_at: :desc)
   end  
   def new
    @link = Link.new
@@ -23,7 +23,6 @@ class LinksController < ApplicationController
 
   def show
     if params[:short_url]
-      # require "pry-nav"; binding.pry
       @link = Link.find_by(short_url: params[:short_url])
       if redirect_to @link.long_url
         @link.clicks += 1
@@ -32,6 +31,10 @@ class LinksController < ApplicationController
     else
       @link = Link.find(params[:id])
     end
+  end
+
+  def link_details
+    @link = Link.find(params[:id])
   end
 
   private
