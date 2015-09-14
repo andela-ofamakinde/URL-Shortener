@@ -1,19 +1,7 @@
-<div class="container">
-<h1>Add a new URL</h1>
-<%= form_for @link, remote: true do |f| %>
-
-  <p>
-    <%= f.label :long_url, "Your URL:" %>
-    <%= f.text_field :long_url %>
-  </p>
-
-  <p class='buttons'>
-    <%= f.submit "Shorten my URL", :class => "waves-effect waves-light" %>
-  </p>
-
+<ul>
+<% @links.each do |link| %>
+  <li><%= link.long_url %></li>
+  <li><%= link.display_short_url %></li>
+  <li><%= link.clicks %></li>
 <% end %>
-
-<div id="append">  
-  <%= render @link %>
-</div>
-</div>
+</ul>

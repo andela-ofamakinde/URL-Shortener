@@ -3,14 +3,14 @@ class LinksController < ApplicationController
   respond_to :html, :js
   def index
    @links = Link.all
-   @link = Link.new
   end  
   def new
-   
+   @link = Link.new
   end
 
   def create
     @link = Link.new(link_params)
+    @link.user_id = @current_user.id if current_user
     if @link.save
         respond_to do |format|
         # format.html redirect_to root_path

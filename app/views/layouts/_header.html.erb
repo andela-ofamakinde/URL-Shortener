@@ -1,7 +1,23 @@
 <div class="container">
+<% if current_user %>
+<ul>
+ <%= link_to "Home", root_path, :class =>"in-line" %>
+  <div class="col s10">
+    <span class="black-text">
+      <a class="dropdown-button" href="#!" data-activates="dropdown1">
+      <%= current_user.name %> logged on</a>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><%= link_to "My Profile", user_path(current_user.id) %></li>
+        <li class="divider"></li>
+        <li><a href="#!"><i class="material-icons left"></i><%= link_to "Log out", logout_path, method: :delete %></a></li>
+      </ul>
+    </span>
+  </div>
+  </ul>
+<% else %>
+  <div><%= link_to "Log in", login_path, :class =>"in-line" %> | <%= link_to "Sign up", signup_path, :class =>"in-line" %> | <%= link_to "Home", root_path, :class =>"in-line" %></div>
+<% end %>
   <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
-  <div><%= link_to "Log in", :class =>"in-line" %> | <%= link_to "Sign up", signup_path, :class =>"in-line" %> | <%= link_to "Home", root_path, :class =>"in-line" %></div>
-
 </div>

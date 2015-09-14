@@ -4,7 +4,7 @@ class CreateLinks < ActiveRecord::Migration
       t.text :long_url
       t.string :short_url
       t.integer :http_status
-
+      t.belongs_to :user
       t.timestamps null: false
     end
   end
