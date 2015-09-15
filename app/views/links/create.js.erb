@@ -1,2 +1,10 @@
-// $("#append").html("<%=j render @link %>");
-$('#append').html('<p class="short_url">Your Shortened Link: <%= link_to @link.display_short_url, @link.display_short_url, target: "_blank" %></p>');
+<% unless flash["failure"] %>
+  $('#append').html("<%=j render 'links/link' %>");
+  <% end %>
+<% else %>
+  <% flash.each do |message_type, message| %>
+  $("#flash-display").html("<p><%= message %></p>");
+  <% flash[message_type] = nil %>
+<% end %>
+
+

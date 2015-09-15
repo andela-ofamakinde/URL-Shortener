@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # get 'welcome/index'
   resources :links
   resources :users
-  get 'signup' => 'users#new'
+  get 'signup' => 'users#new' , as: :signup
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

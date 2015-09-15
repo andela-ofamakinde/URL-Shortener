@@ -38,8 +38,18 @@ gem 'autoprefixer-rails'
 gem 'pry-nav'
 
 gem "figaro"
+
+gem 'imgkit'
+
+gem 'carrierwave'
+gem 'fog'
+
+gem 'mechanize'
+
+gem 'sidekiq'
+
+gem 'nokogiri'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -53,11 +63,18 @@ gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+  gem 'rspec-rails'
+  gem 'capybara'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'selenium-webdriver'
+end
+group :test do
+  gem 'database_cleaner'
 end
 
 group :production do

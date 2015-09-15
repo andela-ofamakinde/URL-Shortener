@@ -17,7 +17,9 @@
 <% else %>
   <div><%= link_to "Log in", login_path, :class =>"in-line" %> | <%= link_to "Sign up", signup_path, :class =>"in-line" %> | <%= link_to "Home", root_path, :class =>"in-line" %></div>
 <% end %>
+<div id="flash-display">
   <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
+</div>
 </div>

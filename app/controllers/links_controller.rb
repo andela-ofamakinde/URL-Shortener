@@ -17,7 +17,7 @@ class LinksController < ApplicationController
         format.js 
       end
     else
-      flash[:failure] = "short url not created"
+      flash[:failure] = "short url not created, enter correct url format"
     end
   end
 
