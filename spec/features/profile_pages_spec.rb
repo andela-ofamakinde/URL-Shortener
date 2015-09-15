@@ -1,7 +1,4 @@
 require 'rails_helper'
-# require 'support/database_cleaner'
-# Capybara.default_driver = :selenium
-
 
 RSpec.describe "UserProfilePages", type: :request do
 describe "User clicks My Profile" do

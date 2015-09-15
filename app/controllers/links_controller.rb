@@ -14,7 +14,7 @@ class LinksController < ApplicationController
     if @link.save
         respond_to do |format|
         # format.html redirect_to root_path
-        format.js 
+        format.json 
       end
     else
       flash[:failure] = "short url not created, enter correct url format"

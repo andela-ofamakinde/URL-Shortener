@@ -1,6 +1,4 @@
 require 'rails_helper'
-# require 'support/database_cleaner'
-# Capybara.default_driver = :selenium
 
 RSpec.describe "UserSignUp", type: :request do
   describe "GET /user_signups" do

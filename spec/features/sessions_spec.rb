@@ -17,7 +17,6 @@ RSpec.feature "Sessions", type: :feature do
     click_button('Log in')
     expect(current_path).to eq(user_path(@user.id))
 
-    # require "pry-nav"; binding.pry
     click_link("jeff logged on")
     click_link("Log out")
     expect(current_path).to eq(root_path)
