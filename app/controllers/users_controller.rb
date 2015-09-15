@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+      # require "pry-nav"; binding.pry
     if @user.save
       log_in @user
       flash[:success] = "Welcome #{user_params[:name]} to URL shortner!"
