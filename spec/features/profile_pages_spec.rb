@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/database_cleaner'
+# require 'support/database_cleaner'
 # Capybara.default_driver = :selenium
 
 
@@ -19,12 +19,12 @@ describe "User clicks My Profile" do
   describe "User clicks LogIn" do
     it "should take user to profile page" do
       @user = User.create(name: "lekan",
-                        email: "famlek@yahoo.com",
+                        email: "famlek@gmail.com",
                         password: "olalekan",
                         password_confirmation: "olalekan")
       visit login_path
       
-      page.fill_in "session_email", :with => "famlek@yahoo.com"
+      page.fill_in "session_email", :with => "famlek@gmail.com"
       page.fill_in "session_password", :with => "olalekan"
       click_button "Log in"
       expect(current_path).to eq(user_path(@user.id))
