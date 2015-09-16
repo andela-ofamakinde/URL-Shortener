@@ -46,6 +46,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    browser (1.0.1)
     builder (3.2.2)
     byebug (6.0.2)
     capybara (2.5.0)
@@ -225,6 +226,10 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    geokit (1.10.0)
+    geokit-rails (2.1.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
@@ -402,6 +407,7 @@ DEPENDENCIES
   autoprefixer-rails
   bcrypt (= 3.1.7)
   bootstrap-sass (~> 3.2.0)
+  browser
   byebug
   capybara
   carrierwave
@@ -409,6 +415,7 @@ DEPENDENCIES
   database_cleaner
   figaro
   fog
+  geokit-rails
   imgkit
   jbuilder (~> 2.0)
   jquery-rails

@@ -10,12 +10,37 @@ class Link < ActiveRecord::Base
             presence: true
   validates :clicks, presence: true
   belongs_to :user
+  has_one :analytic
 
   default_scope{ order("created_at desc")}
 
   def display_short_url
     ENV['BASE_URL'] + self.short_url
   end
+
+  def track_visits(request)
+    analytic = Analytic.find_or_create_by(link_id: self.id)
+    analytic.increment!(:visits, by = 1)
+    if !analytic.unique_visitors.any? { |uv| uv.visitor_ip == request.ip }
+      browser = Browser.new(ua: request.env["HTTP_USER_AGENT"])
+      country = location_from_ip(request.ip)
+      analytic.unique_visitors.create(visitor_ip: request.ip,
+                                      browser: browser.name,
+                                      browser_version: browser.version,
+                                      platform: browser.platform.capitalize,
+                                      country: country)
+      analytic.increment!(:unique_visits, by = 1)
+    end
+  end
+
+  def location_from_ip(ip)
+    location = IpGeocoder.geocode(ip)
+    location.country_code
+  end
+
+  # def visitor_is_unique
+  #   # check if link has had any visitors
+  # end
 
 #   def screenshot_scrape
 #     Screenshot.perform_async(self.id)

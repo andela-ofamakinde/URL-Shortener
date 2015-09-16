@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914142448) do
+ActiveRecord::Schema.define(version: 20150916100128) do
+
+  create_table "analytics", force: :cascade do |t|
+    t.integer  "visits"
+    t.integer  "unique_visits"
+    t.integer  "link_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "analytics", ["link_id"], name: "index_analytics_on_link_id"
 
   create_table "links", force: :cascade do |t|
     t.text     "long_url"
@@ -24,6 +34,19 @@ ActiveRecord::Schema.define(version: 20150914142448) do
   end
 
   add_index "links", ["user_id"], name: "index_links_on_user_id"
+
+  create_table "unique_visitors", force: :cascade do |t|
+    t.string   "visitor_ip"
+    t.string   "browser"
+    t.string   "browser_version"
+    t.string   "platform"
+    t.string   "country"
+    t.integer  "analytic_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "unique_visitors", ["analytic_id"], name: "index_unique_visitors_on_analytic_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -1,3 +1,4 @@
+include Geokit::Geocoders
 class LinksController < ApplicationController
   before_action :set_link, only: [:show]
   respond_to :html, :js
@@ -14,7 +15,6 @@ class LinksController < ApplicationController
     @link.user_id = @current_user.id if current_user
     if @link.save
         respond_to do |format|
-        # format.html redirect_to root_path
         format.js
         format.json { render action: 'show', status: :created, location: @link }
       end
@@ -24,14 +24,19 @@ class LinksController < ApplicationController
   end
 
   def show
-    if params[:short_url]
-      @link = Link.find_by(short_url: params[:short_url])
-      if redirect_to @link.long_url
-        @link.clicks += 1
-        @link.save
-      end
+    # if params[:short_url]
+      link = Link.find_by(short_url: params[:short_url])
+        # require "pry-nav"; binding.pry
+      #   @link.track_visits(request)
+      # if redirect_to @link.long_url
+      #   @link.clicks += 1
+      #   @link.save
+      # end
+      if link
+      link.track_visits(request)
+      redirect_to link.long_url
     else
-      @link = Link.find(params[:id])
+      link = Link.find(params[:id])
     end
   end
 

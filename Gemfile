@@ -49,7 +49,12 @@ gem 'mechanize'
 gem 'sidekiq'
 
 gem 'nokogiri'
+
 gem 'redis'
+
+gem 'browser'
+
+gem 'geokit-rails'
 # Use ActiveModel has_secure_password
 
 # Use Unicorn as the app server
