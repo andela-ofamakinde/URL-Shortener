@@ -3,5 +3,7 @@
 <li>Original Link: <%= @link.long_url %></li>
 <li>Shortened Link: <%= link_to @link.display_short_url, @link.display_short_url, target: "_blank" %></li>
 <li>No of times visited: <%= @link.clicks %></li>
+<li><span class="time"><%= time_ago_in_words(@link.created_at) %> ago</span></li>
+<li> <%= link_to 'Back', root_path %></li>
 </ul>
 </div>

@@ -49,6 +49,7 @@ gem 'mechanize'
 gem 'sidekiq'
 
 gem 'nokogiri'
+gem 'redis'
 # Use ActiveModel has_secure_password
 
 # Use Unicorn as the app server

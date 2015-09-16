@@ -11,3 +11,23 @@
   </div>
 </div>
 
+<div class="title">
+  <h1>Trending links</h1>
+</div>
+
+<div class="row">
+  <% @top_links.each do |link| %>
+    <div>
+      <p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p>
+      <ul class="click_time">
+        <li><%= link.clicks %> clicks</li>
+        <li><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></li>
+      </ul>
+      <p class="long_url"><%= link_to truncate(link.long_url, length: 60), link.long_url %></p>
+      <br>
+    </div>
+  <% end %>
+</div>
+
+<p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p>
+

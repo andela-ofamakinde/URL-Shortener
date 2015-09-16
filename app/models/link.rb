@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   before_validation :url_check
   before_validation :generate_short_url
+  # after_create :screenshot_scrape
 
   VALID_URL_REGEX = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :long_url, presence: true, 
@@ -15,6 +16,65 @@ class Link < ActiveRecord::Base
   def display_short_url
     ENV['BASE_URL'] + self.short_url
   end
+
+#   def screenshot_scrape
+#     Screenshot.perform_async(self.id)
+#     Scrape.perform_async(self.id)
+#   end
+
+#   class Screenshot
+#   include Sidekiq::Worker
+
+#   def perform(link_id)
+#     link = Link.find(link_id)
+#     file = Tempfile.new(["template_#{link.id.to_s}", '.jpg'], 'tmp', :encoding => 'ascii-8bit')
+#     file.write(IMGKit.new(link.long_url, quality: 50, width: 600).to_jpg)
+#     file.flush
+#     link.snapshot = file
+#     link.save
+#     file.unlink
+#   end
+
+# end
+
+# class Scrape
+#   include Sidekiq::Worker
+
+#   def perform(link_id)
+#     link = Link.find(link_id)
+#     agent = Mechanize.new
+#     page = agent.get(link.long_url)
+#     link.title = page.title
+#     link.save
+#   end
+
+# end
+
+# CarrierWave.configure do |config|
+#   config.root = Rails.root.join('tmp')
+#   config.cache_dir = 'carrierwave'
+
+#   config.fog_credentials = {
+#     :provider               => 'AWS',
+#     :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
+#     :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY']
+#   }
+#   config.fog_directory  = ENV['AWS_BUCKET']
+# end
+
+# class SnapshotUploader < CarrierWave::Uploader::Base
+#   storage :file
+#   storage :fog
+#   def store_dir
+#     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+#   end
+
+#   def cache_dir
+#     "#{Rails.root}/tmp/uploads"
+#   end
+# end
+
+#  mount_uploader :snapshot, SnapshotUploader
 
   private
 
