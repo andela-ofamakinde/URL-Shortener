@@ -17,9 +17,13 @@ RSpec.describe "CreateLinks", type: :request do
       short_url = Link.first.display_short_url
 
       expect(page).to have_content(short_url)
+      # require "pry-nav"; binding.pry
 
-      click_link short_url
+      # click_link short_url
 
+      # visit "#{short_url}"
+
+      # expect(page).to have_content("Google")
     end
   end
 end

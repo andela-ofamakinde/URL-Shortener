@@ -24,20 +24,13 @@ class LinksController < ApplicationController
   end
 
   def show
-    # if params[:short_url]
-      link = Link.find_by(short_url: params[:short_url])
-        # require "pry-nav"; binding.pry
-      #   @link.track_visits(request)
-      # if redirect_to @link.long_url
-      #   @link.clicks += 1
-      #   @link.save
-      # end
-      if link
-      link.track_visits(request)
-      redirect_to link.long_url
-    else
-      link = Link.find(params[:id])
-    end
+    if params[:short_url]
+      @link = Link.find_by(short_url: params[:short_url])
+      redirect_to @link.long_url
+       @link.track_visits(request)
+        # @link.save
+     end
+
   end
 
   def link_details

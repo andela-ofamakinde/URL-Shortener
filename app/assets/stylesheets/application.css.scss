@@ -14,4 +14,7 @@
  *= require_self
  */
  
-@import "materialize"
+@import "materialize";
+.nav-wrapper {
+  background: black;
+}

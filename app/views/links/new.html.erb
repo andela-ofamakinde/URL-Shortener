@@ -1,17 +1,29 @@
-<div class="container">
-<h1>Add a new URL</h1>
-<%= form_for @link, remote: true do |f| %>
-  <p>
-    <%= f.label :long_url, "Your URL:" %>
-    <%= f.text_field :long_url %>
-  </p>
-    <%= f.submit "Shorten my URL", :class => "btn waves-effect waves-light submit-url" %>
-  <% end %>
-  <div id="append">  
+<!-- <div id="index-banner" class="parallax-container"> -->
+  <div class="section no-pad-bot">
+    <div class="container">
+      <h2 class="header center teal-text text-lighten-2">Add a new URL</h2>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+        <div class="container">
+        <%= form_for @link, remote: true do |f| %>
+        <p>
+          <%= f.label :long_url, "Your URL:" %>
+          <%= f.text_field :long_url %>
+        </p>
+         <div class="row center">
+          <%= f.submit "Shorten my URL", class: "btn btn-success"%>
+        </div>
+          <% end %>
+          <div id="append">  
+      </div>
+      </div>
+    </div>
   </div>
-</div>
+  <!-- <div class="parallax"><img src="http://www.capitalwired.com/wp-content/uploads/2014/12/a-few-helpful-doctors-ready-to-excuse-you.jpg" alt="Unsplashed background img 2"></div> -->
+<!-- </div> -->
 
-<div class="title">
+<<!-- div class="title">
   <h1>Trending links</h1>
 </div>
 
@@ -29,5 +41,48 @@
   <% end %>
 </div>
 
-<p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p>
+<p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p> -->
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Trending Links</h4>
+        <table>
+        <thead>
+          <tr>
+              <th data-field="id">Long URL</th>
+              <th data-field="name">Shortened URL</th>
+              <th data-field="price">Created_by</th>
+              <th data-field="price">Created_at</th>
+              <th data-field="price">Visited</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+            <td>Eclair</td>
+            <td>$0.87</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 
