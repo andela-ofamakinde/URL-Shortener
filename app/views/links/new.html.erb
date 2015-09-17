@@ -1,48 +1,22 @@
 <!-- <div id="index-banner" class="parallax-container"> -->
-  <div class="section no-pad-bot">
-    <div class="container">
-      <h2 class="header center teal-text text-lighten-2">Add a new URL</h2>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
+    <div class="row container">
+      <h4 class="header center teal-text text-lighten-1">Add a new URL</h4>
         <div class="container">
         <%= form_for @link, remote: true do |f| %>
         <p>
-          <%= f.label :long_url, "Your URL:" %>
           <%= f.text_field :long_url %>
         </p>
          <div class="row center">
           <%= f.submit "Shorten my URL", class: "btn btn-success"%>
+      <div class="row center">
+        <h6 class="header col s12 light">*<%= link_to "SignUp", signup_path %> or <%= link_to "Login", login_path%> to Save your shortened URLs</h6>
+      </div>
         </div>
           <% end %>
-          <div id="append">  
+          <div class="row center" id="append">  
       </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="parallax"><img src="http://www.capitalwired.com/wp-content/uploads/2014/12/a-few-helpful-doctors-ready-to-excuse-you.jpg" alt="Unsplashed background img 2"></div> -->
-<!-- </div> -->
-
-<<!-- div class="title">
-  <h1>Trending links</h1>
-</div>
-
-<div class="row">
-  <% @top_links.each do |link| %>
-    <div>
-      <p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p>
-      <ul class="click_time">
-        <li><%= link.clicks %> clicks</li>
-        <li><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></li>
-      </ul>
-      <p class="long_url"><%= link_to truncate(link.long_url, length: 60), link.long_url %></p>
-      <br>
-    </div>
-  <% end %>
-</div>
-
-<p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p> -->
-
   <div class="container">
     <div class="section">
 
@@ -60,29 +34,52 @@
               <th data-field="price">Visited</th>
           </tr>
         </thead>
-
+          <% @top_links.each do |link| %>
         <tbody>
           <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
+            <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
+            <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
             <td>$0.87</td>
+            <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
+            <td><%= link.analytic.visits %> times</td>
           </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
+          <% end %>
         </tbody>
       </table>
+      <p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p>
         </div>
       </div>
 
     </div>
   </div>
+
+  <div class="row">
+  <div class="col s12 m4">
+    <div class="icon-block">
+      <h2 class="center brown-text"><i class="mdi-image-flash-on"></i></h2>
+      <h5 class="center">Quick and Reliable</h5>
+
+      <p class="light">A Quick and convenient way to turn long, cumbersome, anoying URLs into short and portable URLs</p>
+    </div>
+  </div>
+
+  <div class="col s12 m4">
+    <div class="icon-block">
+      <h2 class="center brown-text"><i class="mdi-social-group"></i></h2>
+      <h5 class="center">User Experience Focused</h5>
+
+      <p class="light">Find and use Tons of shortened Urls on this site</p>
+    </div>
+  </div>
+
+  <div class="col s12 m4">
+    <div class="icon-block">
+      <h2 class="center brown-text"><i class="mdi-action-settings"></i></h2>
+      <h5 class="center">Keeps Track</h5>
+
+      <p class="light">SmallUrl keeps track of all your shortened URLs and also tracksusage of your created URLs</p>
+    </div>
+  </div>
+</div>
 
 

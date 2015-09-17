@@ -1,13 +1,48 @@
-<div class="container">
-  <%= gravatar_for @user %>
-  <%=@user.name%>
-  <%=@user.email%>
-  <ul>
-    <% @user.links.each do |link|%>
-    <li>Original link: <%= link.long_url %></li>
-    <li>Shortened link: <%= link_to link.display_short_url, link.display_short_url, target: "_blank" %></li>
-    <li>Clicks: <%= link.clicks %></li>
-     <li><%= link_to 'Details', link_details_path(id: link.id) %></li>
-    <%end%>
-  </ul>
+
+<div class="row full-height">
+  <% if @user %>
+    <div class="col s2 offset-s1 full-height scroll-bar profile_left_tab">
+      <div class="card medium">
+        <div class="card-image">
+          <%= gravatar_for @user %>
+        </div>
+        <div class="card-content">
+          <p>Name: <%=@user.name%></p>
+          <p>Email: <%= @user.email %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to "Edit Profile" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s8">
+      <h4 class="order_header"><i class="mdi-content-send brown-text"></i>My shortened links</h4>
+        
+  <table class="bordered">
+        <thead>
+        <tr>
+            <th data-field="id">Long URL</th>
+            <th data-field="name">Shortened URL</th>
+            <th data-field="price">Created_at</th>
+            <th data-field="price">Visited</th>
+        </tr>
+      </thead>
+        <% @user.links.each do |link|%>
+      <tbody>
+        <tr>
+          <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
+          <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
+          <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
+          <td><%= link.analytic.visits %> times</td>
+          <td><%= link_to 'Details', link_details_path(link.id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    </div>
+  <% else %>
+    <div class="container">There is no user to display</div>
+  <% end %>
 </div>
