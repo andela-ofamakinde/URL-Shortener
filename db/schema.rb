@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150916100128) do
     t.integer  "user_id"
   end
 
-  # add_index "links", ["user_id"], name: "index_links_on_user_id"
+  add_index "links", ["user_id"], name: "index_links_on_user_id"
 
   create_table "unique_visitors", force: :cascade do |t|
     t.string   "visitor_ip"
