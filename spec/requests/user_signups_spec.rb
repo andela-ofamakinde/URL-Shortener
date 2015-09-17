@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "UserSignUp", type: :request do
   describe "GET /user_signups" do
-
+    before(:all) do
+        page.driver.browser.manage.window.maximize()
+    end
     scenario "should visit sign up page" do
       visit root_path
 

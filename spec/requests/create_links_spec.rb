@@ -1,6 +1,7 @@
 require 'rails_helper'
 # require 'support/database_cleaner'
 Capybara.default_driver = :selenium
+Capybara.server_port = 31337
 
 
 RSpec.describe "CreateLinks", type: :request do
@@ -14,16 +15,17 @@ RSpec.describe "CreateLinks", type: :request do
 
       click_button "Shorten my URL"
       
-      short_url = Link.first.display_short_url
+      short_url = Link.first.short_url
 
       expect(page).to have_content(short_url)
       # require "pry-nav"; binding.pry
 
       # click_link short_url
+      host_port = "localhost:31337/"
+      short_url = host_port+short_url
+      visit "#{short_url}"
 
-      # visit "#{short_url}"
-
-      # expect(page).to have_content("Google")
+      expect(page).to have_content("Google")
     end
   end
 end

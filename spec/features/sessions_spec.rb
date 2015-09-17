@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "Sessions", type: :feature do
 
+before(:all) do
+    page.driver.browser.manage.window.maximize()
+end
+
   scenario "log in with valid details and redirect to user page" do
     @user = User.create(name: "jeff", email: "jeff@andela.com", password: "jeffwann",
       password_confirmation: "jeffwann")
@@ -10,7 +14,7 @@ RSpec.feature "Sessions", type: :feature do
 
     expect(current_path).to eq(login_path)
 
-    expect(page).to have_selector("h3", text: "Log in")
+    expect(page).to have_selector("h4", text: "Log in")
 
     fill_in "session_email", with: 'jeff@andela.com'
     fill_in "session_password", with: 'jeffwann'
