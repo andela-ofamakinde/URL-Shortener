@@ -41,7 +41,7 @@
             <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
             <td>$0.87</td>
             <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
-            <td><%= link.analytic.visits %> times</td>
+            <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
           </tr>
           <% end %>
         </tbody>
