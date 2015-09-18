@@ -25,7 +25,7 @@
             <% if @link_analytics%>
             <% @link.analytic.unique_visitors.each do |visitor|%>
               <tr>
-                <td>Visitor 1</td>
+                <td>User<%= visitor.id%></td>
                 <td><%= visitor.browser %> version <%= visitor.browser_version %></td>
                 <td><%= visitor.platform %></td>
                 <td><%= visitor.country %></td>
