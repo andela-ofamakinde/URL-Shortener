@@ -17,14 +17,10 @@ class Link < ActiveRecord::Base
     ENV['BASE_URL'] + self.short_url
   end
 
-  def increment_clicks
-    self.clicks += 1 
-  end
-
   def track_visits(request)
     analytic = Analytic.find_or_create_by(link_id: self.id)
     analytic.increment!(:visits, by = 1)
-    # if !analytic.unique_visitors.any? { |uv| uv.visitor_ip == request.ip }
+    if !analytic.unique_visitors.any? { |uv| uv.visitor_ip == request.ip }
 
       browser = Browser.new(ua: request.env["HTTP_USER_AGENT"])
       country = location_from_ip(request.ip)
@@ -33,8 +29,8 @@ class Link < ActiveRecord::Base
                                       browser_version: browser.version,
                                       platform: browser.platform.capitalize,
                                       country: country)
-      # analytic.increment!(:unique_visits, by = 1)
-    # end
+      analytic.increment!(:unique_visits, by = 1)
+    end
   end
 
   def location_from_ip(ip)

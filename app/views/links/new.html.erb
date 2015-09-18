@@ -1,85 +1,62 @@
-<!-- <div id="index-banner" class="parallax-container"> -->
-    <div class="row container">
-      <h4 class="header center teal-text text-lighten-1">Add a new URL</h4>
-        <div class="container">
-        <%= form_for @link, remote: true do |f| %>
-        <p>
-          <%= f.text_field :long_url %>
-        </p>
-         <div class="row center">
-          <%= f.submit "Shorten my URL", class: "btn btn-success"%>
+<div class="top-box">
+  <div class="row container">
+  <br/><br/>
+    <h4 class="header center teal-text text-lighten-1">Add a new URL</h4>
+    <div class="container">
+      <%= form_for @link, remote: true do |f| %>
+      <p><%= f.text_field :long_url %></p>
       <div class="row center">
-        <h6 class="header col s12 light">*<%= link_to "SignUp", signup_path %> or <%= link_to "Login", login_path%> to Save your shortened URLs</h6>
-      </div>
+        <%= f.submit "Shorten my URL", class: "btn btn-success"%>
+        <div class="row center">
+          <h6 class="header col s12 light">*<%= link_to "SignUp", signup_path %> or <%= link_to "Login", login_path%> to Save your shortened URLs</h6>
         </div>
-          <% end %>
-          <div class="row center" id="append">  
       </div>
-      </div>
+      <br/>
+      <% end %>
+      <div class="row center" id="append"></div>
     </div>
-  <div class="container">
-    <div class="section">
+  </div>
+</div>
 
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Trending Links</h4>
+<div class=" middle-box">
+  <div class="section">
+    <div class="row">
+      <div class="col s10 offset-s1 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Trending Links</h4>
         <table>
-        <thead>
-          <tr>
+          <thead>
+            <tr>
               <th data-field="id">Long URL</th>
               <th data-field="name">Shortened URL</th>
               <th data-field="price">Created_by</th>
               <th data-field="price">Created_at</th>
               <th data-field="price">Visited</th>
-          </tr>
-        </thead>
+            </tr>
+          </thead>
           <% @top_links.each do |link| %>
-        <tbody>
-          <tr>
-            <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
-            <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
-            <td>$0.87</td>
-            <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
-            <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <p class="bottom_nav"><%= link_to 'See all of the links', "/links" %></p>
-        </div>
+          <tbody>
+            <tr>
+              <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
+              <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
+              <% if link.user_id %>
+              <td><%= link.user.name%></td>
+              <% else %>
+              <td>Anonymous</td>
+              <% end %>
+              <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
+              <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p class="bottom_nav "><%= link_to 'View all URLs', "/links", class: "btn btn-success" %></p>
       </div>
-
-    </div>
-  </div>
-
-  <div class="row">
-  <div class="col s12 m4">
-    <div class="icon-block">
-      <h2 class="center brown-text"><i class="mdi-image-flash-on"></i></h2>
-      <h5 class="center">Quick and Reliable</h5>
-
-      <p class="light">A Quick and convenient way to turn long, cumbersome, anoying URLs into short and portable URLs</p>
-    </div>
-  </div>
-
-  <div class="col s12 m4">
-    <div class="icon-block">
-      <h2 class="center brown-text"><i class="mdi-social-group"></i></h2>
-      <h5 class="center">User Experience Focused</h5>
-
-      <p class="light">Find and use Tons of shortened Urls on this site</p>
-    </div>
-  </div>
-
-  <div class="col s12 m4">
-    <div class="icon-block">
-      <h2 class="center brown-text"><i class="mdi-action-settings"></i></h2>
-      <h5 class="center">Keeps Track</h5>
-
-      <p class="light">SmallUrl keeps track of all your shortened URLs and also tracksusage of your created URLs</p>
     </div>
   </div>
 </div>
+
+<%= render 'layouts/advert' %>    
+
 
 

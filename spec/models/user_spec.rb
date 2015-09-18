@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       expect(user1).to be_valid
 
       expect(user2).to be_valid
-  end
+    end
 
     it "should not create user with invalid email format" do
       user3 = User.create(name: 'Dais', email: 'daisigmail.com', password: "oluwadaisi")
@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
 
       expect(user3).not_to be_valid
       expect(user4).not_to be_valid
-  end
+    end
 
     it "should not create user with a missing property" do
       user5 = User.create(name: 'Dais', email: 'daisigmail.com')

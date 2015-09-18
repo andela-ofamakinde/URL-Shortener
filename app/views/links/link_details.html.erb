@@ -1,18 +1,44 @@
 <div class="container">
-<ul>
-<li>Original Link: <%= @link.long_url %></li>
-<li>Shortened Link: <%= link_to @link.display_short_url, @link.display_short_url, target: "_blank" %></li>
-<li>No of times visited: <%= @link.clicks %></li>
-<li><span class="time"><%= time_ago_in_words(@link.created_at) %> ago</span></li>
-<li>Number of times visited: <%= (@link.analytic) ? @link.analytic.visits : 0 %> times</li>
-<% if @link.analytic %>
-<% @link.analytic.unique_visitors.each do |visitor|%>
-<li><%= visitor.browser %>
-<%= visitor.platform %>
-<%= visitor.browser_version %></li
-<%= visitor.visitor_ip%></li>
-<% end %>
-<% end %>
-<li> <%= link_to 'Back', root_path %></li>
-</ul>
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Analysis</h4>
+        <ul>
+          <li>Original Link: <%= link_to @link.long_url %></li>
+          <li>Shortened Link: <%= link_to @link.display_short_url, @link.display_short_url, target: "_blank" %></li>
+          <li><span class="time">Created<%= time_ago_in_words(@link.created_at) %> ago</span></li>
+          <li>Number of times visited: <%= (@link.analytic) ? @link.analytic.visits : 0 %> times</li>
+          <li> <%= link_to 'Back', root_path %></li>
+        </ul>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th data-field="price">Visitor's ID</th>
+              <th data-field="id">Visitor's browser</th>
+              <th data-field="name">Visitor's platform</th>
+              <th data-field="name">Visitor's country</th>
+              <th data-field="price">Visited</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @link_analytics%>
+            <% @link.analytic.unique_visitors.each do |visitor|%>
+              <tr>
+                <td>Visitor 1</td>
+                <td><%= visitor.browser %> version <%= visitor.browser_version %></td>
+                <td><%= visitor.platform %></td>
+                <td><%= visitor.country %></td>
+                <td><%= (@link.analytic) ? @link.analytic.visits : 0 %> times</td>
+              </tr>
+            <% end %>
+            <% else %>
+              <td>Link has not been visited</td>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+

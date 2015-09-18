@@ -18,14 +18,15 @@ RSpec.describe "CreateLinks", type: :request do
       short_url = Link.first.short_url
 
       expect(page).to have_content(short_url)
-      # require "pry-nav"; binding.pry
 
-      # click_link short_url
       host_port = "localhost:31337/"
       short_url = host_port+short_url
       visit "#{short_url}"
 
       expect(page).to have_content("Google")
+
+      expect(Link.first.analytic.visits).to eq(1)
+
     end
   end
 end

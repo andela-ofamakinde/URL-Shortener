@@ -1,7 +1,7 @@
 <nav>
   <div class="nav-wrapper">
     <div class="row">
-      <div class="col offset-s1"><%= link_to "Home", root_path, :class =>"in-line brand-logo" %></div>
+      <div class="col offset-s1"><%= link_to "ShortUrl", root_path, :class =>"in-line brand-logo" %></div>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>  
       <% if current_user %>
       <ul class="right hide-on-med-and-down">
@@ -9,7 +9,6 @@
         <li><%= link_to "My Profile", user_path(current_user.id) %></li>
         <li><a href=""><%= link_to "Log out", logout_path, method: :delete %></a></li>
         <li><a href=""><%= link_to 'View all URLs', "/links" %></a></li>
-
       </ul>
       <% else %>
        <ul class="right hide-on-med-and-down">
@@ -18,7 +17,8 @@
         <li><a href="badges.html"><%= link_to "Sign up", signup_path, :class =>"in-line" %></a></li>
       </ul>
       <% end %>
-       <% if current_user %>
+
+      <% if current_user %>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="sass.html"><%= current_user.name %> logged on</a></li>
         <li><a href="badges.html"><%= link_to "My Profile", user_path(current_user.id) %></a></li>
@@ -34,11 +34,11 @@
     </div>
   </nav>
 
-<div class="row">
+<div class="row top-box">
   <div class="col s6 offset-s4" id="flash-display">
-  <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
-</div>
+   <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+  </div>
 </div>
 

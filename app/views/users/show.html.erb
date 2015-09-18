@@ -1,34 +1,31 @@
-
-<div class="row full-height">
+<div class="row full-height middle-box">
   <% if @user %>
-    <div class="col s2 offset-s1 full-height scroll-bar profile_left_tab">
-      <div class="card medium">
-        <div class="card-image">
-          <%= gravatar_for @user %>
-        </div>
-        <div class="card-content">
-          <p>Name: <%=@user.name%></p>
-          <p>Email: <%= @user.email %></p>
-        </div>
-        <div class="card-action">
-          <%= link_to "Edit Profile" %>
-        </div>
+  <div class="col s2 offset-s1 full-height scroll-bar profile_left_tab">
+    <div class="card medium">
+      <div class="card-image">
+        <%= gravatar_for @user %>
+      </div>
+      <div class="card-content">
+        <p>Name: <%=@user.name%></p>
+        <p>Email: <%= @user.email %></p>
+      </div>
+      <div class="card-action">
+        <%= link_to "Edit Profile" %>
       </div>
     </div>
-
-    <div class="col s8">
-      <h4 class="order_header"><i class="mdi-content-send brown-text"></i>My shortened links</h4>
-        
-  <table class="bordered">
-        <thead>
+  </div>
+  <div class="col s8">
+    <h4 class="order_header"><i class="mdi-content-send brown-text"></i>My shortened links</h4>
+    <table class="bordered">
+      <thead>
         <tr>
-            <th data-field="id">Long URL</th>
-            <th data-field="name">Shortened URL</th>
-            <th data-field="price">Created_at</th>
-            <th data-field="price">Visited</th>
+          <th data-field="id">Long URL</th>
+          <th data-field="name">Shortened URL</th>
+          <th data-field="price">Created_at</th>
+          <th data-field="price">Visited</th>
         </tr>
       </thead>
-        <% @user.links.each do |link|%>
+      <% @links.each do |link|%>
       <tbody>
         <tr>
           <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
@@ -39,10 +36,12 @@
         </tr>
         <% end %>
       </tbody>
+      <h6 class="row center"><%= will_paginate @links %></h6>
     </table>
-
-    </div>
+  </div>
   <% else %>
-    <div class="container">There is no user to display</div>
+  <div class="container">There is no user to display</div>
   <% end %>
 </div>
+
+

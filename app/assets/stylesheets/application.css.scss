@@ -21,11 +21,22 @@
 }
 #flash-display{
   color:red;
-  font-size:22px;
+  font-size:18px;
 }
 #append{
   margin-top: -20px;
-  margin-bottom: -20px
 
+}
+.top-box{
+  margin-top: -5px;
+  margin-bottom: -20px;
+  background: #E0E0E0;
+  width: 100%
+}
+.middle-box{
+  background: #F0F0F0;
+}
+.display_short_url{
+  font-size: 18px;
 }
 

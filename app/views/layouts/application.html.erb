@@ -1,50 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>URLShortener</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>URLShortener</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
   <%= render 'layouts/header' %>
   <%= yield %>
 
   <div class="container">
     <div class="section">
-
-      <!--   Icon Section   -->
-
     </div>
   </div>
-<!--   <div class='footerDiv' style="margin-bottom:0px !important">
-    <footer class="page-footer teal">
-     <div class="container">
-      <div class="footer-copyright">
-        <div class="container">
-        Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">@olatoyosi</a>
-        </div>
-      </div>
-      </div>
-    </footer>
-  </div> -->
-    <footer class="page-footer" style="background-color:white">
-          <div class="container">
-            <div class="row" >
-              <div class="col l6 s12">
-                <h5 class="white-text" ><br/><br/></h5>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright teal">
-            <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
-            
+  <%= render 'layouts/footer' %>    
 </html>

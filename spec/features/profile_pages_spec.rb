@@ -4,8 +4,8 @@ RSpec.describe "UserProfilePages", type: :request do
   before(:all) do
     page.driver.browser.manage.window.maximize()
   end
-describe "User clicks My Profile" do
-  it "should take user to profile page" do
+  describe "User clicks My Profile" do
+   it "should take user to profile page" do
     visit root_path
     click_link "Log in"
 

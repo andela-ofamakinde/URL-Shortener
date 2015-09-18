@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   get 'users/new'
 
   root 'links#new'
-  # get 'links/create'
-  # get 'welcome/index'
+
   resources :links
   resources :users
   get 'signup' => 'users#new' , as: :signup

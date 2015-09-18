@@ -55,6 +55,8 @@ gem 'redis'
 gem 'browser'
 
 gem 'geokit-rails'
+
+gem 'will_paginate'
 # Use ActiveModel has_secure_password
 
 # Use Unicorn as the app server

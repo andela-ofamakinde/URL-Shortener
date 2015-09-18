@@ -1,34 +1,37 @@
 <div class="container">
   <div class="section">
-
     <div class="row">
       <div class="col s12 center">
         <h3><i class="mdi-content-send brown-text"></i></h3>
         <h4>All URLs</h4>
-      <table class="bordered">
-      <thead>
-        <tr>
-            <th data-field="id">Long URL</th>
-            <th data-field="name">Shortened URL</th>
-            <th data-field="price">Created_by</th>
-            <th data-field="price">Created_at</th>
-            <th data-field="price">Visited</th>
-        </tr>
-      </thead>
-        <% @links.each do |link| %>
-      <tbody>
-        <tr>
-          <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
-          <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
-          <td>$0.87</td>
-          <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
-          <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th data-field="id">Long URL</th>
+              <th data-field="name">Shortened URL</th>
+              <th data-field="price">Created_by</th>
+              <th data-field="price">Created_at</th>
+              <th data-field="price">Visited</th>
+            </tr>
+          </thead>
+          <% @links.each do |link| %>
+          <tbody>
+            <tr>
+              <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
+              <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
+              <% if link.user_id %>
+              <td><%= link.user.name%></td>
+              <% else %>
+              <td>Anonymous</td>
+              <% end %>
+              <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
+              <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
-
   </div>
 </div>
+<h6 class="row center"><%= will_paginate @links %></h6>
