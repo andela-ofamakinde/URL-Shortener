@@ -29,7 +29,7 @@
       <tbody>
         <tr>
           <td><p class="long_url"><%= link_to truncate(link.long_url, length: 30), link.long_url %></p></td>
-          <td><p class="short_url"><%= link_to link.display_short_url, link.short_url, target: '_blank' %></p></td>
+          <td><p class="short_url"><%= link.display_short_url %></p></td>
           <td><span class="time"><%= time_ago_in_words(link.created_at) %> ago</span></td>
           <td><%= (link.analytic) ? link.analytic.visits : 0 %> times</td>
           <td><%= link_to 'Details', link_details_path(link.id) %></td>
