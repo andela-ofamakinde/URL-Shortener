@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @links = @user.links.paginate(page: params[:page], :per_page => 5)
+    if logged_in? && @user == current_user
+      @links = @user.links.paginate(page: params[:page], :per_page => 5)
+    else
+      redirect_to root_path
+    end
   end
 
   def create
